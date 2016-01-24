@@ -1,0 +1,4 @@
+*.gz
+*.npy
+*.pyc
+cifar-10-batches-py/
