@@ -45,9 +45,12 @@ def sampled_gradient_degree_disp(arr):
     new_arr = np.abs(arr)
     new_arr /= np.max(new_arr)
     new_arr = sample_arr(new_arr)
-    degrees = sorted(new_arr.sum(axis=0), reverse=True)
-    plt.loglog(degrees)
-    plt.savefig("pics/005_gradient_degrees")
+    degs = new_arr.sum(axis=0)
+    print degs
+    plt.hist(degs)
+    plt.gca().set_xscale("log")
+    plt.gca().set_yscale("log")
+    plt.show()
 
 # def sample_gradient_otherstats(arr):
 #     print "other stats: "
@@ -60,8 +63,8 @@ def sampled_gradient_degree_disp(arr):
 
 if __name__ == "__main__":
     np_arr = np.load("grad_mat.npy")
-    gradient_disp(np_arr)
-    gradient_abs_disp(np_arr)
-    normalized_gradient_disp(np_arr)
-    sampled_gradient_disp(np_arr)
+    # gradient_disp(np_arr)
+    # gradient_abs_disp(np_arr)
+    # normalized_gradient_disp(np_arr)
+    # sampled_gradient_disp(np_arr)
     sampled_gradient_degree_disp(np_arr)

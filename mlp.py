@@ -68,7 +68,7 @@ class MLP:
 
         for i in range(len(self.weights)):
             Z = np.random.random((self.layers[i].size,self.layers[i+1].size))
-            self.weights[i][...] = (2*Z-1)*0.25
+            self.weights[i][...] = (2*Z-1)*0.1
 
     def propagate_forward(self, data):
         ''' Propagate data from input layer to output layer. '''
@@ -168,7 +168,7 @@ if __name__ == '__main__':
         return samples, 784
 
     print "learning the patterns..."
-    samples, dims = create_mnist_samples()
+    samples, dims = create_cifar_samples()
     network = MLP(dims, dims, 10)
     for i in range(500):
         print "pattern: ", i
