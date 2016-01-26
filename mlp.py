@@ -85,7 +85,7 @@ class MLP:
         return self.layers[-1]
 
 
-    def propagate_backward(self, target, lrate=0.1, grad_filename="grad_mat", weight_filename="weight_mat"):
+    def propagate_backward(self, target, lrate=1.0, grad_filename="grad_mat", weight_filename="weight_mat"):
         ''' Back propagate error related to target using lrate. '''
 
         deltas = []
@@ -168,7 +168,7 @@ if __name__ == '__main__':
         return samples, 784
 
     print "learning the patterns..."
-    samples, dims = create_cifar_samples()
+    samples, dims = create_mnist_samples()
     network = MLP(dims, dims, 10)
     for i in range(500):
         print "pattern: ", i
