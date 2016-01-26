@@ -2,6 +2,7 @@ import numpy as np
 import numpy.random as npr
 import matplotlib.pyplot as plt
 import networkx as nx
+import time
 
 def sample_arr(arr):
     new_arr = np.zeros_like(arr)
@@ -10,24 +11,6 @@ def sample_arr(arr):
             if npr.rand() < arr[x, y]:
                 new_arr[x, y] = 1.0
     return new_arr
-
-def effective_diameter(net):
-    # 90% diameter. use the giant component net
-    # not the smoothed effective diameter
-    total_diam = 0
-    thresh = (len(net.nodes()) * 9) // 10
-    for node in net.nodes():
-        colored_set, frontier = set(), set()
-        colored_set.add(node)
-        frontier.add(node)
-        node_diam = 0
-        while len(colored_set) < thresh:
-            node_diam += 1
-###################
-###################
-###################
-        total_diam += node_diam
-    return total_diam / len(net.nodes())
 
 def gradient_disp(arr, title, filename):
     plt.close()
@@ -83,7 +66,9 @@ def sampled_gradient_otherstats(arr):
     new_arr = sample_arr(new_arr)
     arr_net = nx.from_numpy_matrix(new_arr[:-1, :])
     giant_component_net = arr_net.subgraph(max(nx.connected_components(arr_net), key=len))
+    print time.clock()
     diameter = nx.diameter(giant_component_net)
+    print time.clock()
     clustering_coeff = nx.average_clustering(arr_net)
     print "diameter: ", diameter
     print "clustering coeff: ", clustering_coeff
