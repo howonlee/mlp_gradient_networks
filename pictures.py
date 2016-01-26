@@ -11,30 +11,30 @@ def sample_arr(arr):
                 new_arr[x, y] = 1.0
     return new_arr
 
-def gradient_disp(arr, title):
+def gradient_disp(arr, title, filename):
     plt.close()
     plt.imshow(arr, cmap="Greys")
     plt.colorbar()
     plt.title(title)
-    plt.savefig("pics/" + title)
+    plt.savefig("pics/" + filename)
 
-def gradient_abs_disp(arr, title):
+def gradient_abs_disp(arr, title, filename):
     plt.close()
     plt.imshow(np.abs(arr), cmap="Greys")
     plt.colorbar()
     plt.title(title)
-    plt.savefig("pics/" + title)
+    plt.savefig("pics/" + filename)
 
-def normalized_gradient_disp(arr, title):
+def normalized_gradient_disp(arr, title, filename):
     plt.close()
     new_arr = np.abs(arr)
     new_arr /= np.max(new_arr)
     plt.imshow(new_arr, cmap="Greys")
     plt.colorbar()
     plt.title(title)
-    plt.savefig("pics/" + title)
+    plt.savefig("pics/" + filename)
 
-def sampled_gradient_disp(arr, title):
+def sampled_gradient_disp(arr, title, filename):
     plt.close()
     new_arr = np.abs(arr)
     new_arr /= np.max(new_arr)
@@ -42,32 +42,33 @@ def sampled_gradient_disp(arr, title):
     plt.imshow(new_arr, cmap="Greys")
     plt.colorbar()
     plt.title(title)
-    plt.savefig("pics/" + title)
+    plt.savefig("pics/" + filename)
 
-def sampled_gradient_degree_disp(arr, title):
+def sampled_gradient_degree_disp(arr, title, filename):
     plt.close()
     new_arr = np.abs(arr)
     new_arr /= np.max(new_arr)
     new_arr = sample_arr(new_arr)
     degs = new_arr.sum(axis=0)
     plt.hist(degs)
+    plt.title(title)
     plt.gca().set_xscale("log")
     plt.gca().set_yscale("log")
-    plt.savefig("pics/" + title)
+    plt.savefig("pics/" + filename)
 
-def sample_gradient_otherstats(arr):
-    print "other stats: "
-    new_arr = np.abs(arr)
-    new_arr /= np.max(new_arr)
-    new_arr = sample_arr(new_arr)
-    net = nx.from_numpy_matrix(new_arr)
-    print "diameter: ", nx.diameter(net)
-    print "mean clustering coeffs", nx.clustering_coefficient(net)
+# def sample_gradient_otherstats(arr):
+#     print "other stats: "
+#     new_arr = np.abs(arr)
+#     new_arr /= np.max(new_arr)
+#     new_arr = sample_arr(new_arr)
+#     net = nx.from_numpy_matrix(new_arr)
+#     print "diameter: ", nx.diameter(net)
+#     print "mean clustering coeffs", nx.clustering_coefficient(net)
 
 if __name__ == "__main__":
     np_arr = np.load("grad_mat.npy")
-    # gradient_disp(np_arr)
-    # gradient_abs_disp(np_arr)
-    # normalized_gradient_disp(np_arr)
-    # sampled_gradient_disp(np_arr)
-    # sampled_gradient_degree_disp(np_arr)
+    gradient_disp(np_arr)
+    gradient_abs_disp(np_arr)
+    normalized_gradient_disp(np_arr)
+    sampled_gradient_disp(np_arr)
+    sampled_gradient_degree_disp(np_arr)
