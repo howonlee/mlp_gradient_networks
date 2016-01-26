@@ -168,7 +168,7 @@ if __name__ == '__main__':
         return samples, 784
 
     print "learning the patterns..."
-    samples, dims = create_mnist_samples()
+    samples, dims = create_cifar_samples()
     network = MLP(dims, dims, 10)
     for i in range(500):
         print "pattern: ", i

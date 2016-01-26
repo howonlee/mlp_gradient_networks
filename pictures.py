@@ -11,6 +11,24 @@ def sample_arr(arr):
                 new_arr[x, y] = 1.0
     return new_arr
 
+def effective_diameter(net):
+    # 90% diameter. use the giant component net
+    # not the smoothed effective diameter
+    total_diam = 0
+    thresh = (len(net.nodes()) * 9) // 10
+    for node in net.nodes():
+        colored_set, frontier = set(), set()
+        colored_set.add(node)
+        frontier.add(node)
+        node_diam = 0
+        while len(colored_set) < thresh:
+            node_diam += 1
+###################
+###################
+###################
+        total_diam += node_diam
+    return total_diam / len(net.nodes())
+
 def gradient_disp(arr, title, filename):
     plt.close()
     plt.imshow(arr, cmap="Greys")
