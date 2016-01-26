@@ -44,7 +44,7 @@ def sampled_gradient_disp(arr, title):
     plt.title(title)
     plt.savefig("pics/" + title)
 
-def sampled_gradient_degree_disp(arr):
+def sampled_gradient_degree_disp(arr, title):
     plt.close()
     new_arr = np.abs(arr)
     new_arr /= np.max(new_arr)
@@ -70,4 +70,4 @@ if __name__ == "__main__":
     # gradient_abs_disp(np_arr)
     # normalized_gradient_disp(np_arr)
     # sampled_gradient_disp(np_arr)
-    sampled_gradient_degree_disp(np_arr)
+    # sampled_gradient_degree_disp(np_arr)
