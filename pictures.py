@@ -67,8 +67,8 @@ def sampled_gradient_degree_disp(arr, title, filename):
 
 if __name__ == "__main__":
     np_arr = np.load("grad_mat.npy")
-    gradient_disp(np_arr)
-    gradient_abs_disp(np_arr)
-    normalized_gradient_disp(np_arr)
-    sampled_gradient_disp(np_arr)
-    sampled_gradient_degree_disp(np_arr)
+    gradient_disp(np_arr, "Gradient", "a001_grad")
+    gradient_abs_disp(np_arr, "Absolute Gradient", "a002_abs_grad")
+    normalized_gradient_disp(np_arr, "Normalized Absolute Gradient", "a003_norm_grad")
+    sampled_gradient_disp(np_arr, "Sampled Gradient Network", "a004_grad_net")
+    sampled_gradient_degree_disp(np_arr, "Gradient Network Degree Distribution", "a005_grad_deg")
