@@ -52,6 +52,8 @@ def sampled_gradient_degree_disp(arr, title, filename):
     degs = new_arr.sum(axis=0)
     plt.hist(degs)
     plt.title(title)
+    plt.xlabel("degree")
+    plt.ylabel("number of nodes with degree")
     plt.gca().set_xscale("log")
     plt.gca().set_yscale("log")
     plt.savefig("pics/" + filename)
